@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// rutas de aaplicacion
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/solicitud/confirmacion', 'SolicitudController@index')->name('solicitud.confirmacion');
 Route::get('/solicitud/finalizar','SolicitudController@end')->name('solicitud.finalizar');
@@ -24,6 +24,9 @@ Route::post('/solicitud/experiencia', 'SolicitudController@experiencia')->name('
 Route::get('/solicitud/detalle/{id}', 'SolicitudController@detalle')->name('solicitud.detalle');
 
 Route::post('/solicitud/updateDocs', 'SolicitudController@updateDoc')->name('solicitud.updateDocs');
+
+
+
 
 
 
