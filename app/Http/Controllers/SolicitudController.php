@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Solicitud;
 use App\Experiencia;
+use App\Auditoria;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
@@ -36,6 +37,7 @@ class SolicitudController extends Controller
 
         $experiencia = new Experiencia;
         $experiencia->valor = $request->valor;
+        $experiencia->tramite = 'ESPACIO PUBLICO PARA LOCALIZACION DE EQUIPAMIENTO';
         if ($request->sugerencias == null) {
             $experiencia->sugerencias = "SIN SUGERENCIAS";
         } else {
@@ -72,9 +74,7 @@ class SolicitudController extends Controller
         $this->validate($request, [
             "modalidad" => "required",
             "construccion" => "required",
-            "direccion_predio" => "required",
-            "matricula" => "required",
-            "identificacion_catastral" => "required",
+            "direccion_predio" => "required",            
             "barrio" => "required",
             "vereda" => "required",
             "nom_titular" => "required",
@@ -111,17 +111,17 @@ class SolicitudController extends Controller
             $idRadicado = $ultimo_id->id + 1;
         }
 
-        $radicado = date("Ymd") . $request->matricula . $idRadicado; // numero radicado
+        $radicado = date("Ymd") . $request->identificacion_titular . $idRadicado; // numero radicado
 
         // move archivos
-        $adjunto1 = $request->file('adjunto_documentoIdentidad')->storeAs('public/Documentos_Solicitud/' . $radicado, 'Documentos_Identidad-' . $radicado . '.pdf');
+        $adjunto1 = $request->file('adjunto_documentoIdentidad')->storeAs('Documentos_Solicitud/' . $radicado, 'Documentos_Identidad-' . $radicado . '.pdf');
 
 
-        $adjunto2 = $request->file('adjunto_poder')->storeAs('public/Documentos_Solicitud/' . $radicado, 'Documentos_Poder-' . $radicado . '.pdf');
+        $adjunto2 = $request->file('adjunto_poder')->storeAs('Documentos_Solicitud/' . $radicado, 'Documentos_Poder-' . $radicado . '.pdf');
 
-        $adjunto3 = $request->file('adjunto_descripcion')->storeAs('public/Documentos_Solicitud/' . $radicado, 'Documentos_Descripcion-' . $radicado . '.pdf');
+        $adjunto3 = $request->file('adjunto_descripcion')->storeAs('Documentos_Solicitud/' . $radicado, 'Documentos_Descripcion-' . $radicado . '.pdf');
 
-        $adjunto4 = $request->file('adjunto_planos')->storeAs('public/Documentos_Solicitud/' . $radicado, 'Documentos_Planos-' . $radicado . '.pdf');
+        $adjunto4 = $request->file('adjunto_planos')->storeAs('Documentos_Solicitud/' . $radicado, 'Documentos_Planos-' . $radicado . '.pdf');
 
 
         if ($adjunto1 && $adjunto2 && $adjunto3 && $adjunto4) {
@@ -160,6 +160,18 @@ class SolicitudController extends Controller
             $saveSolicitud = Solicitud::create($solicitud);
 
             if ($saveSolicitud) {
+
+                //auditoria
+                $auditoria = Auditoria::create([
+                    'usuario' => $request->ide_responsable,
+                    'proceso_afectado'=> 'Radicado-'.$radicado,
+                    'tramite'=> 'LICENCIA DE INTERVENCION DE ESPACIO PUBLICO PARA LOCALIZACION DE EQUIPAMIENTO',
+                    'radicado'=> $radicado,
+                    'accion'=>'update a estado ENVIADO',
+                    'observacion'=> 'El ciudadano '.$request->nom_responsable." ".$request->ape_responsable. ' realiza la solicitud para la licencia de intervención del espacio público para la localización de equipamiento'
+
+
+                ]);
 
                 // envio de correo                
                 Mail::to($request->email_responsable)->send(new EnvioNotificacion($detalleCorreo));
@@ -215,27 +227,46 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::FindOrFail($request->id);
         $contador = 0;
         if($request->adjunto_documentoIdentidad){
-            $adjunto1 = $request->file('adjunto_documentoIdentidad')->storeAs('public/Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Identidad-' . $solicitud->radicado . '.pdf');
+            $adjunto1 = $request->file('adjunto_documentoIdentidad')->storeAs('Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Identidad-' . $solicitud->radicado . '.pdf');
             $contador++;
+        }else{
+            $adjunto1 = false;
         }
 
         if($request->adjunto_poder){
-            $adjunto2 = $request->file('adjunto_poder')->storeAs('public/Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Poder-' . $solicitud->radicado . '.pdf');
+            $adjunto2 = $request->file('adjunto_poder')->storeAs('Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Poder-' . $solicitud->radicado . '.pdf');
             $contador++;
+        }else{
+            $adjunto2 = false;
         }
 
         if($request->adjunto_descripcion){
-            $adjunto3 = $request->file('adjunto_descripcion')->storeAs('public/Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Descripcion-' . $solicitud->radicado . '.pdf');
+            $adjunto3 = $request->file('adjunto_descripcion')->storeAs('Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Descripcion-' . $solicitud->radicado . '.pdf');
             $contador++;
+        }else{
+            $adjunto3= false;
         }
 
         if($request->adjunto_planos){
-            $adjunto4 = $request->file('adjunto_planos')->storeAs('public/Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Planos-' . $solicitud->radicado . '.pdf');
+            $adjunto4 = $request->file('adjunto_planos')->storeAs('Documentos_Solicitud/' . $solicitud->radicado, 'Documentos_Planos-' . $solicitud->radicado . '.pdf');
             $contador++;
 
+        }else{
+            $adjunto4 = false;
         }
         
         if($adjunto1 || $adjunto2 || $adjunto3 || $adjunto4){
+
+             //auditoria
+             $auditoria = Auditoria::create([
+                'usuario' => $solicitud->ide_responsable,
+                'proceso_afectado'=> 'Radicado-'.$solicitud->radicado,
+                'tramite'=> 'LICENCIA DE INTERVENCION DE ESPACIO PUBLICO PARA LOCALIZACION DE EQUIPAMIENTO',
+                'radicado'=> $solicitud->radicado,
+                'accion'=>'update de documentos',
+                'observacion'=> 'El ciudadano '.$solicitud->nom_responsable." ".$solicitud->ape_responsable. ' Actualiza documentos dentro de los plazos dispuestos'
+
+            ]);
 
             $solicitud->act_documentos = "SI";
             $solicitud->save();            
@@ -246,12 +277,8 @@ class SolicitudController extends Controller
             Alert::error('Error', 'No se ha realizado la carga de los archivos en el sistema');
             return redirect()->route('home');
         }
-   
 
-
-
-
-        
+     
 
 
 

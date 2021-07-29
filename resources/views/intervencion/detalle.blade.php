@@ -21,7 +21,7 @@
                                 <div class="image-icon">
                                     <span class="breadcrumb govco-icon govco-icon-shortr-arrow" style="height: 22px;"></span>
                                     <p class="ml-3 ml-md-0 "><b style="color: #004fbf;text-transform: none;">
-                                            Intervención del Espacio Publico
+                                        Intervención del Espacio Publico para la Localización de Equipamiento
                                         </b></p>
                                 </div>
                             </li>
@@ -79,7 +79,7 @@
                        <div class="col-md-6">  
                         <div class="form-group">
                         <h5>Oficio de respuesta</h5>
-                          <a href="http://tramitesenlinea.test:8080/{{$solicitud->documento_respuesta}}" target="_blank">Descargar documento</a>&nbsp;&nbsp;<i class="fa fa-download"></i>
+                          <a href="http://tramitesenlinea.test/{{$solicitud->documento_respuesta}}" target="_blank">Descargar documento</a>&nbsp;&nbsp;<i class="fa fa-download"></i>
                        </div>
                        </div>
 

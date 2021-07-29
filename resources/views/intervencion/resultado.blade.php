@@ -25,7 +25,7 @@
                             <div class="image-icon">
                                 <span class="breadcrumb govco-icon govco-icon-shortr-arrow" style="height: 22px;"></span>
                                 <p class="ml-3 ml-md-0 "><b style="color: #004fbf;text-transform: none;">
-                                        Intervención del Espacio Publico
+                                    Intervención del Espacio Publico para la Localización de Equipamiento
                                     </b></p>
                             </div>
                         </li>
@@ -56,7 +56,7 @@
                                             <th style="color: #004884;" class="">Radicado</th>
                                             <th style="color: #004884;">Nombres Reponsable</th>
                                             <th style="color: #004884;;">Modalidad - Construccion</th>
-                                            <th style="color: #004884;">Direccion - #Predial</th>
+                                            <th style="color: #004884;">Direccion del predio</th>
                                             <th style="color: #004884;">Estado de la solicitud</th>
                                             <th style="color: #004884;">Fecha de Solicitud</th>
                                             <th style="color: #004884;">Detalle </th>
@@ -68,7 +68,7 @@
                                        <td>{{$solicitud->radicado}}</td>
                                        <td>{{$solicitud->nom_responsable}} {{$solicitud->ape_responsable}} </td>
                                        <td>{{$solicitud->modalidad}} - {{$solicitud->construccion}}</td>
-                                       <td>{{$solicitud->direccion_predio}}- {{$solicitud->identificacion_catastral}}</td>
+                                       <td>{{$solicitud->direccion_predio}}</td>
                                        <td>@if ($solicitud->estado_solicitud == 'ENVIADA')
                                         <p style="color: #069169;font-weight:bold">ENVIADA<span class="govco-icon govco-icon-check-p size-1x"></span></p>
                                          @elseif($solicitud->estado_solicitud == 'PENDIENTE')

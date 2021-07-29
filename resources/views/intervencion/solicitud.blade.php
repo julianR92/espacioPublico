@@ -21,8 +21,8 @@
                         <li class="breadcrumb-item ">
                             <div class="image-icon">
                                 <span class="breadcrumb govco-icon govco-icon-shortr-arrow" style="height: 22px;"></span>
-                                <p class="ml-3 ml-md-0 "><b style="color: #004fbf;text-transform: none;">
-                                        Intervención del Espacio Publico
+                                <p class="ml-3 ml-md-0" style="font-size: 14px!important;"><b style="color: #004fbf;text-transform: none;">
+                                        Intervención del Espacio Publico para la Localización de Equipamiento
                                     </b></p>
                             </div>
                         </li>
@@ -63,18 +63,45 @@
 
                         <h1 class="headline-xl-govco">Licencia de Intervención de Espacio Público para la Localización de Equipamiento</h1>
 
-                        <div class="alert-primary-govco alert alert-dismissible fade show mt-3"
-                            aria-label="Alerta informativa">
+                        <div class="alert-warning-govco alert alert-dismissible fade show" aria-label="Alerta de advertencia">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"
                                 title="Cerrar">&times;</button>
-                            <div class="alert-heading">
-                                <span class="govco-icon govco-icon-bell-sound-p size-2x"></span>
-                                <span class="headline-l-govco">Importante</span>
-                            </div>
-                            <p aling="justify">Es la autorización previa para ocupar o para intervenir bienes de uso público
-                                incluidos en el espacio público, de conformidad con las normas urbanísticas adoptadas en el
+                                <div class="alert-heading">
+                                    <span class="govco-icon govco-icon-exclamation-cn size-2x"></span>
+                                    <span class="headline-l-govco">Importante</span>
+                                  </div>
+                            <p style="text-align: justify;">Este tramite es la autorización previa para ocupar o para intervenir bienes de uso público incluidos en el espacio público, de conformidad con las normas urbanísticas adoptadas en el
                                 Plan de Ordenamiento Territorial, en los instrumentos que lo desarrollen y complementen y
                                 demás normatividad vigente. </p>
+                                <h5>Documentos comunes a toda solicitud</h5>
+                                <ol>
+                                    <li><p style="text-align: justify; text-justify: inter-word">Copia del documento de identidad del solicitante cuando se trate de personas naturales o certificado de existencia y representación legal, cuya fecha de expedición no sea superior a un mes, cuando se trate de personas jurídicas.</p></li>
+                                    <li><p style="text-align: justify; text-justify: inter-word">Poder especial debidamente otorgado, ante notario o juez de la república, cuando se actúe mediante apoderado o mandatario, con la correspondiente presentación personal.</p></li>                              
+                                  </ol>  
+                                <h5>Documentos adicionales en licencias de intervención y ocupación del espacio público para la localización de equipamiento</h5>  
+                                <ol>
+  
+                                  <li><p style="text-align: justify; text-justify: inter-word">Descripción del proyecto, indicando las características generales, los elementos urbanos a intervenir en el espacio público, la escala y cobertura.</p></li>                                
+  
+                                  <li><p style="text-align: justify; text-justify: inter-word">Copia de los planos de diseño del Proyecto, acotados y rotulados indicando la identificación del solicitante, la escala, el contenido del plano y la orientación norte. 
+  
+                                  Los planos deben estar firmados por el profesional responsable del diseño y deben contener la siguiente información:
+                                      </p>  
+                                      <ol type="a">  
+                                          <li><p style="text-align: justify; text-justify: inter-word">	Localización del proyecto en el espacio público a intervenir en escala 1:250 o 1:200 que guarde concordancia con los cuadros de áreas y mojones del plano urbanístico cuando este exista.</p></li>
+  
+                                          <li><p style="text-align: justify; text-justify: inter-word">Para equipamientos comunales se deben presentar, plantas, cortes y fachadas del proyecto arquitectónico a escala 1:200 o 1:100.</p></li>
+  
+                                          <li><p style="text-align: justify; text-justify: inter-word">Cuadro de áreas que determine índices de ocupación, porcentajes de zonas duras, zonas verdes, áreas libres y construidas según sea el caso y cuadro de arborización en el evento de existir. </p></li>
+  
+                                          <li><p style="text-align: justify; text-justify: inter-word">Registro fotográfico de la zona a intervenir.</p></li>
+  
+                                          <li><p style="text-align: justify; text-justify: inter-word">Especificaciones de diseño y construcción del espacio público.</p></li>                                          
+  
+                                        </ol>                                
+                                   </li>  
+                                </ol>
+
                         </div>
 
                         <h3 class="headline-l-govco mt-3 pl-0">1. Identificación de la solicitud</h3>
@@ -201,8 +228,8 @@
                             </div>
 
                             <div class="col-md-6 pl-1 pr-1 pt-3">
-                                <label for="matricula" class="form-label">N° de matricula Inmobiliaria* </label>
-                                <input type="text" value="{{old('matricula')}}" class="form-control  @error('matricula') is-invalid @enderror" name="matricula" id="matricula"  maxlength="20" required onkeypress="return Matricula(event)" onkeyup="aMayusculas(this.value,this.id)">
+                                <label for="matricula" class="form-label">N° de matricula Inmobiliaria </label>
+                                <input type="text" value="{{old('matricula')}}" class="form-control  @error('matricula') is-invalid @enderror" name="matricula" id="matricula"  maxlength="20" onkeypress="return Matricula(event)" onkeyup="aMayusculas(this.value,this.id)">
                                 @error('matricula')
                                 <span class="invalid-feedback" role="alert">
                                    <strong>{{ $message }}</strong>
@@ -212,8 +239,8 @@
 
                             
                             <div class="col-md-6 pl-1 pr-1 pt-3">
-                                <label for="identificacion_catastral" class="form-label">N° de Identificación catastral* </label>
-                                <input type="text" value="{{old('identificacion_catastral')}}" class="form-control  @error('identificacion_catastral') is-invalid @enderror" name="identificacion_catastral" id="identificacion_catastral"  maxlength="20" required onkeypress="return Numeros(event)">
+                                <label for="identificacion_catastral" class="form-label">N° de Identificación catastral </label>
+                                <input type="text" value="{{old('identificacion_catastral')}}" class="form-control  @error('identificacion_catastral') is-invalid @enderror" name="identificacion_catastral" id="identificacion_catastral"  maxlength="20" onkeypress="return Numeros(event)">
                                 @error('identificacion_catastral')
                                 <span class="invalid-feedback" role="alert">
                                    <strong>{{ $message }}</strong>
@@ -242,7 +269,7 @@
                                <select name="vereda" id="vereda" class="form-control @error('vereda') is-invalid @enderror" required>
                                    <option value=""></option>
                                    @foreach ($Veredas as $vereda)
-                                   @if($vereda->nombre == 'SIN INFORMACIÓN')
+                                   @if($vereda->nombre == 'NO APLICA')
                                    <option value="{{$vereda->nombre}}" selected>{{$vereda->nombre}}</option>
                                    @else
                                    <option value="{{$vereda->nombre}}">{{$vereda->nombre}}</option>
@@ -442,7 +469,7 @@
 
                             <h3 class="headline-l-govco mt-4">4. Documentos que acompañan la solicitud </h3><br>
 
-                            <div class="alert-warning-govco alert alert-dismissible fade show" aria-label="Alerta de advertencia">                                
+                            {{-- <div class="alert-warning-govco alert alert-dismissible fade show" aria-label="Alerta de advertencia">                                
                                 <div class="alert-heading">
                                   <span class="govco-icon govco-icon-exclamation-cn size-2x"></span>
                                   <span class="headline-l-govco">Importante</span>
@@ -450,9 +477,8 @@
                                 <h5>Documentos comunes a toda solicitud</h5>
                               <ol>
                                   <li><p style="text-align: justify; text-justify: inter-word">Copia del documento de identidad del solicitante cuando se trate de personas naturales o certificado de existencia y representación legal, cuya fecha de expedición no sea superior a un mes, cuando se trate de personas jurídicas.</p></li>
-                                  <li><p style="text-align: justify; text-justify: inter-word">Poder especial debidamente otorgado, ante notario o juez de la república, cuando se actúe mediante apoderado o mandatario, con la correspondiente presentación personal.</p></li>                                 
-
-                              </ol>
+                                  <li><p style="text-align: justify; text-justify: inter-word">Poder especial debidamente otorgado, ante notario o juez de la república, cuando se actúe mediante apoderado o mandatario, con la correspondiente presentación personal.</p></li>                              
+                             </ol>
 
                               <h5>Documentos adicionales en licencias de intervencion y ocupación del espacio público</h5>
 
@@ -463,8 +489,7 @@
 
                                 <li><p style="text-align: justify; text-justify: inter-word">Copia de los planos de diseño del Proyecto, acotados y rotulados indicando la identificación del solicitante, la escala, el contenido del plano y la orientación norte. 
 
-                                Los planos deben estar firmados por el profesional responsable del diseño y deben contener la siguiente información:
-                                    </p>
+                                Los planos deben estar firmados por el profesional responsable del diseño y deben contener la siguiente información:                                    </p>
 
                                     <ol type="a">
 
@@ -476,18 +501,12 @@
 
                                         <li><p style="text-align: justify; text-justify: inter-word">Registro fotográfico de la zona a intervenir.</p></li>
 
-                                        <li><p style="text-align: justify; text-justify: inter-word">Especificaciones de diseño y construcción del espacio público.</p></li>
-                                        
-
-
-                                    </ol>
-                                
-                                
+                                        <li><p style="text-align: justify; text-justify: inter-word">Especificaciones de diseño y construcción del espacio público.</p></li>                                       
+                                   </ol>                               
                                 </li>
-
                               </ol>
                                 
-                              </div>
+                              </div> --}}
 
                             <div class="col-md-6 pl-1 pr-1 pt-3">
                                 <label for="archivo_documento" class="form-label"> Copia documento de identidad/certificado* </label>
@@ -574,13 +593,13 @@
                                    terceros vinculados a la Alcaldía de Bucaramanga</p>
                                 <div class="form-check-inline">
                                    <label class="radiolist-govco radiobutton-govco">
-                                      <input type="radio" name="compartir_informacion" id="rb_si" value="SI" />
+                                      <input type="radio" name="compartir_informacion" id="rb_si" value="SI" required/>
                                       <label for="rb_si">SI</label>
                                    </label>
                                 </div>
                                 <div class="form-check-inline">
                                    <label class="radiolist-govco radiobutton-govco">
-                                      <input type="radio" name="compartir_informacion" id="rb_no" value="NO" />
+                                      <input type="radio" name="compartir_informacion" id="rb_no" value="NO"  required/>
                                       <label for="rb_no">NO</label>
                                    </label>
                                 </div>
