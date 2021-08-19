@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                    <form action="{{route('solicitud.insert')}}" method="POST"  enctype="multipart/form-data" id="myForm">
+                    <form action="{{route('solicitud.insert')}}" method="POST"  enctype="multipart/form-data" id="myForm" class="form-ciudadano">
                     @csrf
                     <div class="card govco-card border-0 shadow-none" style="border-radius: 0px;">
 
@@ -605,7 +605,9 @@
                                 </div>
                              </div>
                              <div class="col-md-12 text-left mt-4" style="padding-left: 0px!important">
-                                <button style="font-size:15px;" type="submit" class="btn btn-round btn-middle" name="consultar" onclick="return confirm('¿Esta seguro de generar esta solicitud ?')">Enviar Solicitud</button>
+                                <button style="font-size:15px;" type="submit" class="btn btn-round btn-middle btn_enviar_solicitud" name="consultar" onclick="return confirm('¿Esta seguro de generar esta solicitud ?')">Enviar Solicitud</button>
+
+                                <button style="font-size:15px;" class="btn btn-round btn-middle btn_carga d-none" type="button" disabled><span class="spinner-grow spinner-grow-sm text-primary" role="status" aria-hidden="true"></span> Enviando...</button>
                              </div>
                         
                         </div>
@@ -901,6 +903,8 @@
                  <div class="modal-footer">
                    
                     <button type="submit" class="btn btn-round btn-middle btn-outline-info"  id="Boton">Realizar Búsqueda</button>
+
+                    
                     <button type="button" class="btn btn-round btn-middle btn-outline-info" data-dismiss="modal">Cerrar</button>
                  </div>
               </form>
