@@ -754,4 +754,12 @@ $(document).ready(function () {
     $('.group_check1').on('change', function() {
         $('.group_check1').not(this).prop('checked', false);
      });
+
+     // funcion general spinner de carga
+
+     $(".form-ciudadano").submit(function(e){
+        $(".btn_enviar_solicitud").addClass("d-none");
+        $('.btn_carga').removeClass('d-none');
+      });
+
 }); // FIN DOCUMENT READY
