@@ -762,4 +762,14 @@ $(document).ready(function () {
         $('.btn_carga').removeClass('d-none');
       });
 
+
+      // metrolinea
+
+      $(".select_general").select2({
+        width: "100%",
+        placeholder: "Seleccione..",
+    });
+
+
+
 }); // FIN DOCUMENT READY

@@ -32,7 +32,8 @@
 								<tr>
 				<td style="padding: 10px 0 30px 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
                     <small><em style="color:f5f5f5; font-size:12px;"><?php echo date('Y-m-d') ?></em></small><br><br>
-
+                    
+					@if($detalleCorreo['estado_solicitud']=='ENVIADA')
                     <h3 align="justify">Notificación de envió de solicitud.<br></h3>
                     <p align="justify">Cordial saludo,  <strong> {{$detalleCorreo['nombres']}} </strong> .<p>
 
@@ -41,7 +42,24 @@
 
                      <p align="justify">Si tienes alguna inquietud o solicitud por favor comunícate a los canales oficiales de atencion <a href="https://pqr.bucaramanga.gov.co/">PQRSD</a> adjuntando tu inconveniente ó  a  los numeros <a href="tel:6337000">6337000</a></p>                       
 
-                    
+                    @else
+
+					<h3 align="justify">Notificación de actualización de documentos.<br></h3>
+                    <p align="justify">Cordial saludo,  <strong> {{$detalleCorreo['nombres']}} </strong> .<p>
+
+
+                     <p align="justify">Usted ha realizado una actualización de documentos en la solicitud de intervención del espacio público por lo tanto su solicitud se encuentra  <strong>EN ESTUDIO</strong> , si desea realizar alguna consulta sobre el estado de la solicitud diríjase a la pagina <a href="#">Pagina</a> Con el numero de radicado <strong>{{$detalleCorreo['radicado']}}</strong> opción <u>consulto mi solicitud</u>.</p>
+
+                     <p align="justify">Si tienes alguna inquietud o solicitud por favor comunícate a los canales oficiales de atencion <a href="https://pqr.bucaramanga.gov.co/">PQRSD</a> adjuntando tu inconveniente ó  a  los numeros <a href="tel:6337000">6337000</a></p>                       
+
+
+
+
+
+
+
+					@endif
+
 									</td>
 								</tr>
 								<tr>

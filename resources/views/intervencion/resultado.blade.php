@@ -75,6 +75,8 @@
                                          <p style="color: #3772FF;font-weight:bold">PENDIENTE<span class="govco-icon govco-icon-eye-p size-1x"></span></p>
                                          @elseif($solicitud->estado_solicitud == 'EN PROGRESO')
                                          <p style="color: #F3561F;font-weight:bold">EN PROGRESO<span class="govco-icon govco-icon-reload-n size-1x"></span></p>
+                                         @elseif($solicitud->estado_solicitud == 'EN ESTUDIO')
+                                         <p style="color: #FFAB00;font-weight:bold">EN ESTUDIO<span class="govco-icon govco-icon-edit-p size-1x"></span></p>
                                          @elseif($solicitud->estado_solicitud == 'APROBADA')
                                          <p style="color: #069169;font-weight:bold">APROBADA<span class="govco-icon govco-icon-like size-1x"></span></p>
                                          @elseif($solicitud->estado_solicitud == 'RECHAZADA')

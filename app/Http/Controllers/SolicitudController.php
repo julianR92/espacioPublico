@@ -151,7 +151,8 @@ class SolicitudController extends Controller
             $detalleCorreo = [
                 'nombres' => $request->nom_responsable . ' ' . $request->ape_responsable,
                 'radicado' => $radicado,
-                'Subject' => 'Envío de Solicitud Intervención de Espacio Publico'
+                'Subject' => 'Envío de Solicitud Intervención de Espacio Publico',
+                'estado_solicitud' =>'ENVIADA'
             ];
 
 
@@ -254,6 +255,13 @@ class SolicitudController extends Controller
         }else{
             $adjunto4 = false;
         }
+
+        $detalleCorreo = [
+            'nombres' => $solicitud->nom_responsable . ' ' . $solicitud->ape_responsable,
+            'radicado' => $solicitud->radicado,
+            'Subject' => 'Solicitud en Estudio de Intervención de Espacio Publico',
+            'estado_solicitud' =>'EN ESTUDIO'
+        ];
         
         if($adjunto1 || $adjunto2 || $adjunto3 || $adjunto4){
 
@@ -263,13 +271,20 @@ class SolicitudController extends Controller
                 'proceso_afectado'=> 'Radicado-'.$solicitud->radicado,
                 'tramite'=> 'LICENCIA DE INTERVENCION DE ESPACIO PUBLICO PARA LOCALIZACION DE EQUIPAMIENTO',
                 'radicado'=> $solicitud->radicado,
-                'accion'=>'update de documentos',
+                'accion'=>'update de documentos, cambio a estado EN ESTUDIO',
                 'observacion'=> 'El ciudadano '.$solicitud->nom_responsable." ".$solicitud->ape_responsable. ' Actualiza documentos dentro de los plazos dispuestos'
 
             ]);
 
+
+
             $solicitud->act_documentos = "SI";
-            $solicitud->save();            
+            $solicitud->fecha_pendiente = null;
+            $solicitud->estado_solicitud = 'EN ESTUDIO';
+            $solicitud->observaciones_solicitud = 'Solicitud en estudio, posterior a la actualización de documentos';
+            $solicitud->save();
+             // envio de correo                
+             Mail::to($solicitud->email_responsable)->send(new EnvioNotificacion($detalleCorreo));            
             Alert::success('Operacion exitosa', 'Se han cargado '.$contador.' archivo(s) en el sistema');
             return redirect()->route('home');
 
